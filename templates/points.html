@@ -1,0 +1,58 @@
+{% extends "layout.html"%}
+
+{% block title%}
+  - Points & Level 
+{% endblock %}
+
+{% block main %}
+  <!-- Contenedor principal centrado -->
+  <div class="d-flex justify-content-center align-items-center py-5">
+    <!-- Tarjeta principal para la información -->
+    <div class="card p-5 shadow-lg rounded-3 border-0 text-center" style="max-width: 600px;">
+      <h1 class="h3 fw-bold text-primary mb-4">Points & Level</h1>
+
+      <div class="row g-4 mb-4">
+        <!-- Tarjeta para Puntos -->
+        <div class="col-md-6">
+          <div class="card bg-success-subtle text-success h-100 rounded-3 p-3">
+            <div class="d-flex align-items-center justify-content-center flex-column">
+              <!-- Icono de puntos -->
+              <h2 class="h1 mb-0"><i class="fas fa-star"></i></h2>
+              <p class="h4 fw-bold mt-2 mb-0">{{ points }}</p>
+              <p class="text-uppercase small mt-1 mb-0">Points</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta para Nivel -->
+        <div class="col-md-6">
+          <div class="card bg-info-subtle text-info h-100 rounded-3 p-3">
+            <div class="d-flex align-items-center justify-content-center flex-column">
+              <!-- Icono de nivel -->
+              <h2 class="h1 mb-0"><i class="fas fa-trophy"></i></h2>
+              <p class="h4 fw-bold mt-2 mb-0">{{ level }}</p>
+              <p class="text-uppercase small mt-1 mb-0">Level</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de progreso para el siguiente nivel -->
+      <h3 class="h6 text-uppercase text-muted mt-3 mb-2">Progress to next level</h3>
+      {% set progress = (points % 100) if points > 0 else 0 %}
+      <div class="progress rounded-pill mb-3" style="height: 25px;">
+        <div 
+          class="progress-bar progress-bar-striped progress-bar-animated" 
+          role="progressbar" 
+          style="width: {{ progress }}%;" 
+          aria-valuenow="{{ progress }}" 
+          aria-valuemin="0" 
+          aria-valuemax="100">
+          {{ progress }}%
+        </div>
+      </div>
+
+      <p class="text-muted small mt-4">Keep completing your goals to earn more points!</p>
+    </div>
+  </div>
+{% endblock %}

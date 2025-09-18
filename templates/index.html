@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% block title %}
+- Home
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid py-4">
+    <!-- Título principal con más estilo y espacio -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold text-primary"><i class="fas fa-list-check me-2"></i>Welcome to My Way!</h1>
+            <p class="lead text-muted">Here are your goals, projects and tasks:</p>
+            <a href="/add/goal" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                <i class="fas fa-plus me-2"></i>Add a new goal
+            </a>
+        </div>
+    </div>
+    
+    {% if goals %}
+    <div class="goals-container row g-4">
+        {% for goal in goals %}
+        <div class="col-lg-12">
+            <div class="goal-card card shadow-lg rounded-3 p-4 border-0 mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h2 class="h4 fw-bold mb-1"><i class="fas fa-bullseye me-2"></i>{{ goal.title }}</h2>
+                        <!-- CORREGIDO: Muestra la fecha objetivo de la meta -->
+                        {% if goal.objective %}
+                        <p class="text-secondary small fst-italic mb-2">
+                            <i class="fas fa-calendar-alt me-1"></i> Target d[ate: {{ goal.objective }}
+                        </p>
+                        {% else %}
+                        <p class="text-secondary small fst-italic mb-2">
+                            <i class="fas fa-calendar-alt me-1"></i> Target date: Sin fecha
+                        </p>
+                        {% endif %}
+                        <p class="text-break">{{ goal.description }}</p>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <form action="/complete/state/goal/{{ goal.id }}" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-success me-2">Complete Goal</button>
+                        </form>
+                        <form action="/remove/goal/{{ goal.id }}" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete Goal</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="add-project-link mb-3">
+                    <a href="/add/project/{{ goal.id }}" class="btn btn-sm btn-primary">Add project</a>
+                </div>
+
+                {% if goal.projects %}
+                <div class="projects-list mt-3">
+                    <h3 class="h6 text-uppercase text-secondary fw-bold mb-3"><i class="fas fa-project-diagram me-1"></i>Projects:</h3>
+                    <div class="d-flex flex-column gap-3">
+                        {% for project in goal.projects %}
+                        <div class="project-card card shadow-sm rounded-3 p-3 border-start border-3 border-primary">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <h4 class="h6 fw-bold mb-1">{{ project.title }}</h4>
+                                    <p class="text-muted small mb-1">{{ project.description }}</p>
+                                    <!-- CORREGIDO: Muestra la fecha objetivo del proyecto -->
+                                    {% if project.objective %}
+                                    <p class="text-secondary small fst-italic mb-0">
+                                        <i class="fas fa-calendar-check me-1"></i> Objective date: {{ project.objective }}
+                                    </p>
+                                    {% else %}
+                                    <p class="text-secondary small fst-italic mb-0">
+                                        <i class="fas fa-calendar-check me-1"></i> Objective date: Sin fecha
+                                    </p>
+                                    {% endif %}
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <form action="/complete/state/project/{{ project.id }}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-success me-2">Complete Project</button>
+                                    </form>
+                                    <form action="/remove/project/{{ project.id }}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete Project</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="add-task-link mt-2">
+                                <a href="/add/task/{{ project.id }}" class="btn btn-sm btn-outline-primary">Add task</a>
+                            </div>
+                            
+                            {% if project.tasks %}
+                            <div class="tasks-list mt-3">
+                                <h5 class="h6 text-uppercase fw-bold mb-2"><i class="fas fa-tasks me-1"></i>Tasks:</h5>
+                                <ul class="list-group list-group-flush border-top pt-2">
+                                    {% for task in project.tasks %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">
+                                        <div>
+                                            <span>{{ task.title }}</span>
+                                            <!-- Muestra la fecha y prioridad de la tarea -->
+                                            <p class="text-muted small mb-0">
+                                                {% if task.expiration_date %}
+                                                    <i class="fas fa-calendar-times me-1"></i> Due: {{ task.expiration_date }} |
+                                                {% else %}
+                                                    <i class="fas fa-calendar-times me-1"></i> Due: Sin fecha |
+                                                {% endif %}
+                                                <i class="fas fa-exclamation-circle me-1"></i>Priority: {{ task.priority }}
+                                            </p>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <form action="/complete/state/task/{{ task.id }}" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-success me-2">Complete</button>
+                                            </form>
+                                            <form action="/remove/task/{{ task.id }}" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% else %}
+                            <p class="text-muted small mt-2">--There are no tasks in this project yet.--</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% else %}
+                <p class="text-muted mt-2">--There are no projects on this target yet.--</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-12 text-center">
+            <p class="lead text-muted">--You don't have any goals yet - start adding one!--</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

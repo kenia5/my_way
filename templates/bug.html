@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  - Error
+{% endblock %}
+
+{% block main %}
+  <h1>Sorry!</h1>
+  <h3>An error has occurred</h3>
+
+  <p><strong>Error code: </strong>{{ error_code }}</p>
+  <p><strong>Message: </strong>{{ error_message }}</p>
+
+  <a href="/">Back to home page</a>
+{% endblock %}

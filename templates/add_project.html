@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  - Add Project
+{% endblock %}
+
+{% block main %}
+  <!-- Tarjeta centralizada para el formulario -->
+  <div class="d-flex justify-content-center align-items-center py-5">
+    <div class="card p-4 p-md-5 shadow-lg rounded-3 border-0" style="max-width: 600px;">
+      <h1 class="card-title text-center mb-4 h3 fw-bold text-primary">
+        <i class="fas fa-project-diagram me-2"></i>Add a New Project
+      </h1>
+      <form action="/add/project/{{ goal_id }}" method="post">
+        <!-- Campo para el Título -->
+        <div class="form-floating mb-3">
+          <input
+            autocomplete="off"
+            autofocus
+            class="form-control"
+            id="title"
+            name="title"
+            placeholder="Title"
+            type="text"
+            required
+          />
+          <label for="title">Title</label>
+        </div>
+        <!-- Campo para la Descripción -->
+        <div class="form-floating mb-3">
+          <textarea
+            autocomplete="off"
+            class="form-control"
+            id="description"
+            name="description"
+            placeholder="Description"
+            required
+            style="height: 100px;"
+          ></textarea>
+          <label for="description">Description</label>
+        </div>
+        <!-- Campo para la Fecha Objetivo -->
+        <div class="form-floating mb-3">
+          <input
+            autocomplete="off"
+            class="form-control"
+            id="objective_date"
+            name="objective_date"
+            placeholder="Objective Date"
+            type="date"
+          />
+          <label for="objective_date">Objective Date</label>
+        </div>
+        <!-- Botones de acción -->
+        <div class="d-flex justify-content-between mt-4">
+          <a href="/" class="btn btn-outline-secondary rounded-pill">
+            <i class="fas fa-arrow-left me-2"></i>Back
+          </a>
+          <button type="submit" class="btn btn-primary rounded-pill">
+            Add Project<i class="fas fa-plus ms-2"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

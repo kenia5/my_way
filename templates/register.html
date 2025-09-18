@@ -1,0 +1,73 @@
+{% extends "layout.html"%}
+
+{% block title %}
+  - Register
+{% endblock %}
+
+{% block main %}
+  <!-- Contenedor principal centrado -->
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container" style="max-width: 450px;">
+      <!-- Tarjeta para el formulario de registro -->
+      <div class="card p-4 p-md-5 shadow-lg rounded-3 border-0">
+        <div class="card-body">
+          <h1 class="card-title text-center mb-4 h3 fw-bold text-primary">
+            <i class="fas fa-user-plus me-2"></i>Sign Up
+          </h1>
+          <form action="/register" method="post">
+            <!-- Campo de Username -->
+            <div class="form-floating mb-3">
+              <input
+                autocomplete="off"
+                autofocus
+                class="form-control rounded-3"
+                id="username"
+                name="username"
+                placeholder="Username"
+                type="text"
+                required
+              />
+              <label for="username">Username</label>
+            </div>
+            <!-- Campo de Password -->
+            <div class="form-floating mb-3">
+              <input
+                class="form-control rounded-3"
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                required
+              />
+              <label for="password">Password</label>
+            </div>
+            <!-- Campo de Confirmación de Password -->
+            <div class="form-floating mb-3">
+              <input
+                class="form-control rounded-3"
+                id="confirmation"
+                name="confirmation"
+                placeholder="Password Again"
+                type="password"
+                required
+              />
+              <label for="confirmation">Confirm Password</label>
+            </div>
+            <!-- Botón de Enviar -->
+            <div class="d-grid gap-2 mt-4">
+              <button class="btn btn-primary btn-lg rounded-3" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+          <div class="text-center mt-4">
+            <p class="mb-0 text-muted">
+              Already have an account?
+              <a href="/login" class="fw-bold text-decoration-none">Log in here</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
