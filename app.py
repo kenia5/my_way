@@ -1,13 +1,20 @@
+import os
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from helpers import get_db_connection, bug, delete_item
 from werkzeug.security import check_password_hash, generate_password_hash
+
 
 app = Flask(__name__)
 
 # Configurar la sesión para utilizar el sistema de archivos (en lugar de cookies firmadas)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.secret_key = os.environ.get("SECRET_KEY", "default_secret")
+
+# Ruta de la base de datos
+DB_PATH = os.environ.get("DB_PATH", "way.db")
+
 Session(app)
 
 # MANEJADOR DE ERRORES: Se ejecuta cada vez que se llame a abort
