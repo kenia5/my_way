@@ -1,4 +1,5 @@
 🎯 My Way
+
 Una aplicación web desarrollada con Flask, SQLite y Python, donde los usuarios pueden crear metas, dividirlas en proyectos y estos en tareas. 
 Al completar tareas, los usuarios ganan puntos que les permiten subir de nivel.
 
