@@ -19,8 +19,8 @@ HTML, CSS, Bootstrap
 📦 Instalación
 - Clona este repositorio:
 
-  git clone https://github.com/TU-USUARIO/TU-REPO.git
-  cd TU-REPO
+  git clone https://github.com/kenia5/my_way.git
+  cd my_way
 
 - Crea y activa un entorno virtual:
 
@@ -44,7 +44,7 @@ HTML, CSS, Bootstrap
 
 🚀 Demo
 
-👉 Enlace en línea 
+👉 Enlace en línea - https://blog-my-way.onrender.com
 
 📌 Futuras mejoras
 
