@@ -29,10 +29,9 @@ As tasks are completed, users earn points and level up, adding a gamification el
 - HTML, CSS, Bootstrap
 
 ## 📸 Screenshots
-
-
-
-
+![Login](login.png.png)
+![Dashboard](dashboard.png.png)
+![Tasks](tasks.png.png)
 
 ## 🌐 Live Demo
 
